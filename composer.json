@@ -1,0 +1,25 @@
+{
+    "name": "everalan/dingtalk",
+    "description": "DingTalk server API. 钉钉服务器API，支持发送工作通知和机器人消息",
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "monolog/monolog": "^2.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LinJoe",
+            "email": "525140052@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LinJoe\\Ding\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.2"
+    }
+}
