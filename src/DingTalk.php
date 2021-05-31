@@ -35,7 +35,7 @@ class DingTalk
 
     public function send()
     {
-        var_dump('-------------');
+        return '12312312312312312';
     }
 
 
