@@ -1,6 +1,6 @@
 {
-    "name": "everalan/dingtalk",
-    "description": "DingTalk server API. 钉钉服务器API，支持发送工作通知和机器人消息",
+    "name": "LinJoe/DingingTalk",
+    "description": "DingTalk server API. 钉钉服务器API，支持发送工作通和机器人消息",
     "type": "library",
     "require": {
         "php": ">=7.1",
