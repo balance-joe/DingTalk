@@ -1,5 +1,5 @@
 {
-    "name": "LinJoe/DingingTalk",
+    "name": "linqiao/dinging-talk",
     "description": "DingTalk server API. 钉钉服务器API，支持发送工作通和机器人消息",
     "type": "library",
     "require": {
