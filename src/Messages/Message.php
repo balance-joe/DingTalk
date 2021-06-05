@@ -1,38 +1,51 @@
 <?php
 
+
 namespace LinJoe\Ding\Messages;
 
-abstract class Message
+class Message
 {
-    protected $message = [];
-    protected $at;
+    protected $value;
+    protected $type;
+    protected $attributes = [];
 
-
-    public function getMessage(){
-        return $this->message;
+    public function __construct(...$value)
+    {
+        $this->value = $value;
     }
 
-    protected function makeAt($mobiles = [],$atAll = false){
-        return [
-            'at' => [
-                'atMobiles' => $mobiles,
-                'isAtAll' => $atAll
-            ]
-        ];
+    public static function make()
+    {
+        return new static(...func_get_args());
     }
 
-    public function sendAt($mobiles = [],$atAll = false){
-        $this->at = $this->makeAt($mobiles,$atAll);
+    public function type()
+    {
+        return $this->type;
+    }
+
+    protected function transform($value)
+    {
+        return $value;
+    }
+
+    public function setAttribute($key, $value)
+    {
+        $this->attributes[$key] = $value;
+
         return $this;
     }
 
-    public function getBody(){
-
-        if (empty($this->at)){
-            $this->sendAt();
-        }
-
-        return $this->message + $this->at;
+    public function toArray()
+    {
+        return [
+            'msgtype' => $this->type(),
+            $this->type() => array_merge($this->transform($this->value), $this->attributes),
+        ];
     }
 
+    public function toJson()
+    {
+        return json_encode($this->toArray());
+    }
 }

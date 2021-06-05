@@ -1,18 +1,27 @@
 <?php
 
+
 namespace LinJoe\Ding\Messages;
+
 
 class Markdown extends Message
 {
-    public function __construct($title,$markdown)
+    protected $type = 'markdown';
+
+    public function setTitle($value)
     {
-        $this->message  = [
-            'msgtype' => 'markdown',
-            'markdown' => [
-                'title' => $title,
-                'text' => $markdown
-            ]
-        ];
+        return $this->setAttribute('title', $value);
+    }
+
+    public function setText($value)
+    {
+        return $this->setAttribute('text', $value);
+    }
+
+    protected function transform($value)
+    {
+        list($content) = $value;
+        return ['content' => $content];
     }
 
 }

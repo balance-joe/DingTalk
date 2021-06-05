@@ -30,7 +30,7 @@ class DingTest extends TestCase
 
     public function testTextMessage()
     {
-        $message = new \LinJoe\Ding\Messages\Text('@张三 测试消息');
+        $message = new \LinJoe\Ding\Messages_back\Text('@张三 测试消息');
         $result = $this->ding_talk->sendWorkNotice('024246103336342620', $message, 1202478190);
         $this->assertEquals($this->successResult, $result);
     }

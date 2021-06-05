@@ -1,24 +1,31 @@
 <?php
 
+
 namespace LinJoe\Ding\Messages;
 
 class Link extends Message
 {
+    protected $type = 'link';
 
-    public function __construct($title,$text,$messageUrl,$picUrl = '')
+    public function setPictureUrl($value)
     {
-        $this->setMessage($title,$text,$messageUrl,$picUrl);
+        return $this->setAttribute('picUrl', $value);
     }
 
-    public function setMessage($title,$text,$messageUrl,$picUrl = ''){
-        $this->message  = [
-            'msgtype' => 'link',
-            'link' => [
-                'text' => $text,
-                'title' => $title,
-                'picUrl' => $picUrl,
-                'messageUrl' => $messageUrl
-            ]
-        ];
+    public function setTitle($value)
+    {
+        return $this->setAttribute('title', $value);
+    }
+
+    public function setText($value)
+    {
+        return $this->setAttribute('text', $value);
+    }
+
+    protected function transform($value)
+    {
+        list($url) = $value;
+
+        return ['messageUrl' => $url];
     }
 }
