@@ -4,6 +4,7 @@
 namespace LinJoe\Ding;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Jaeger\GHttp;
 
 class DingTalk
@@ -53,9 +54,15 @@ class DingTalk
     public function send($message)
     {
         $client = new Client();
-        return $client->request('POST', $this->request_url, [
-            'json' => $message,
-        ]);
+        try {
+            $response = $client->request('POST', $this->request_url, [
+                'json' => $message,
+            ]);
+            return $response->getBody()->getContents();
+
+        } catch (GuzzleException $e) {
+            return $e->getMessage();
+        }
 
     }
 
